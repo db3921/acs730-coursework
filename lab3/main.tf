@@ -1,4 +1,3 @@
-
 terraform {
   required_version = "~> 1.10"
   required_providers {
@@ -16,8 +15,9 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_s3_bucket" "lab3" {
-  bucket = "acs730-lab3-423739922781"
+resource "aws_security_group" "lab3" {
+  name        = "acs730-lab3-sg"
+  description = "ACS730 lab 3 Terraform-managed security group"
 
   tags = {
     Name = "acs730-lab3"
