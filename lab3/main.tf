@@ -20,6 +20,7 @@ resource "aws_security_group" "lab3" {
   description = "ACS730 lab 3 Terraform-managed security group"
 
   tags = {
-    Name = "acs730-lab3"
+    Name    = "acs730-lab3"
+    Updated = "by-ci"
   }
 }
