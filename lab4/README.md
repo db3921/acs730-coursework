@@ -20,3 +20,15 @@ curl http://localhost:8000/healthz
 - **Dependency layer:** on a code-only rebuild, `pip install` was CACHED in the slim image but re-ran in the naive image, because the naive Dockerfile copies the source (`COPY . .`) before installing dependencies.
 - **.dockerignore:** it kept `.git`, `.github`, Python cache files, `evidence/`, screenshots, Markdown files and the Dockerfiles out of the build context, so only `app.py` and `requirements.txt` reach the image.
 
+## CI timings: baseline vs cache miss vs cache hit
+
+| Step | Baseline (no cache) | Cache miss | Cache hit | Worth it? |
+|---|---|---|---|---|
+| pip install (3.11 / 3.12) | 4s / 4s | 2s / 3s | 1s / 2s | Marginal |
+| docker build | 14s | 15s (+2s to save the cache) | 5s | Yes |
+| Whole workflow (wall clock) | 1m 2s | 1m 8s | 53s | Yes |
+
+Runs: baseline 39896893146, miss 39897954504, hit 39898880267. The hit run's log shows "Cache restored from key" for pip and "importing cache manifest from gha" for Docker.
+
+- **pip cache:** marginal. It saves about 2 seconds per test job, because this app only installs three small packages; it would matter much more with many or large dependencies, and it costs almost nothing to keep.
+- **Docker layer cache:** worth it. It cut the build step from 14s to 5s by reusing the base image and `pip install` layers; the cache-miss run was slightly slower than baseline because it also had to save the cache.
