@@ -19,3 +19,17 @@ A Terraform configuration for a small web stack: one VPC (10.42.0.0/16), two pub
 - Academy sessions expire. Lab credentials last hours, so a pull request opened on Saturday night fails on Sunday morning for a reason unrelated to the code, and people learn to ignore red checks. A check people ignore is worse than no check.
 - It is slow and flaky. Minutes each way, API rate limits, eventual-consistency errors unrelated to your change, and concurrent pull requests colliding on names and state in one account.
 - Be honest about the limit. A green LocalStack run proves the configuration is coherent and the graph builds, not that IAM is right (LocalStack does not enforce it) or that user_data works (LocalStack never boots the instance). The real check belongs on merge or on a schedule, once, not per pull request.
+
+## Experiments
+
+### 4. Turn the bucket off
+
+**Prediction:** With `create_artifact_bucket = false`, `count = 0` makes `aws_s3_bucket.artifacts[*].bucket` an empty list, so `one()` returns `null` and `terraform output artifact_bucket` prints `null`. Changing `one()` to `[0]` should fail at plan time with an "Invalid index" error, because there is no element 0.
+
+**Result:** The apply created 9 resources, and `terraform output artifact_bucket` returned `Error: Output "artifact_bucket" not found`, not `null`. `one()` did return null, but Terraform does not store outputs whose value is null, so the output simply does not exist in state. With `[0]`, the plan failed as predicted: `Invalid index ... aws_s3_bucket.artifacts is empty tuple`. `one()` is the safe way to read a count-gated resource; `[0]` breaks the whole plan whenever the resource is turned off.
+
+### 5. Point at real AWS on purpose, plan only
+
+**Prediction:** Without `localstack.tfvars`, I expected `use_localstack` to fall back to false, so `provider_target` would say `aws (us-east-1)`. I expected the same 10 resources as the LocalStack run, and the AMI to come from the `aws_ami.al2023` lookup instead of the fixed LocalStack ID.
+
+**Result:** `provider_target = "aws (us-east-1)"` and the AMI resolved to `ami-0820d0c589175bc01` through the `aws_ami.al2023` data source, as predicted. The plan showed 9 resources, not 10: `create_artifact_bucket` is set to true only in `localstack.tfvars`, so without that file it defaulted to false and the bucket (and the `artifact_bucket` output) disappeared. The one line that would have warned me is `provider_target = "aws (us-east-1)"` in the plan's outputs. Nothing was applied.
