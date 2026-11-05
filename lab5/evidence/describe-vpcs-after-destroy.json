@@ -6,7 +6,7 @@
             "Ipv6CidrBlockAssociationSet": [],
             "CidrBlockAssociationSet": [
                 {
-                    "AssociationId": "vpc-cidr-assoc-fb1ebbea",
+                    "AssociationId": "vpc-cidr-assoc-36ead452",
                     "CidrBlock": "172.31.0.0/16",
                     "CidrBlockState": {
                         "State": "associated"
@@ -15,7 +15,7 @@
             ],
             "IsDefault": true,
             "Tags": [],
-            "VpcId": "vpc-d6f4d9f1",
+            "VpcId": "vpc-2094fa3c",
             "State": "available",
             "CidrBlock": "172.31.0.0/16",
             "DhcpOptionsId": "default"
