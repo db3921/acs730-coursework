@@ -1,3 +1,14 @@
+terraform {
+  required_version = ">= 1.9.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.60"
+    }
+  }
+}
+
 # ACS730 midterm practice -- LocalStack-targeted network.
 #
 # Everything lives in one file on purpose: Terraform loads every .tf file in a

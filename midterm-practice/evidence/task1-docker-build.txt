@@ -1,0 +1,40 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 545B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.11-slim-bookworm
+#2 DONE 0.2s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 197B done
+#3 DONE 0.0s
+
+#4 [1/6] FROM docker.io/library/python:3.11-slim-bookworm@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 181B done
+#5 DONE 0.0s
+
+#6 [3/6] WORKDIR /app
+#6 CACHED
+
+#7 [4/6] COPY requirements.txt ./
+#7 CACHED
+
+#8 [2/6] RUN useradd --create-home --uid 10001 appuser
+#8 CACHED
+
+#9 [5/6] RUN pip install --no-cache-dir -r requirements.txt
+#9 CACHED
+
+#10 [6/6] COPY app.py ./
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 writing image sha256:6c33f4d5fa085c05d2b82dd7e3830e3b2eeec154118668b6c9bbe5ffa4927ae2 done
+#11 naming to docker.io/library/acs730-midterm:local done
+#11 DONE 0.0s
