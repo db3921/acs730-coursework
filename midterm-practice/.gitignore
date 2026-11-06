@@ -6,3 +6,13 @@ __pycache__/
 # Editors
 .vscode/
 .idea/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+tfplan
+
+# Secrets
+*.pem
+.env
