@@ -2,30 +2,30 @@
 PLAY [Configure the ACS730 Lab 6 web servers] **********************************
 
 TASK [Gathering Facts] *********************************************************
+ok: [i-055484b3d72e9a512]
+ok: [i-047c179ac5700f0b9]
+
+TASK [webserver : Install the packages the application needs] ******************
 ok: [i-047c179ac5700f0b9]
 ok: [i-055484b3d72e9a512]
 
-TASK [Install the packages the application needs] ******************************
+TASK [webserver : Create the unprivileged service account] *********************
+ok: [i-055484b3d72e9a512]
+ok: [i-047c179ac5700f0b9]
+
+TASK [webserver : Create the application directory] ****************************
 ok: [i-047c179ac5700f0b9]
 ok: [i-055484b3d72e9a512]
 
-TASK [Create the unprivileged service account] *********************************
+TASK [webserver : Render the landing page from a template] *********************
+ok: [i-055484b3d72e9a512]
+ok: [i-047c179ac5700f0b9]
+
+TASK [webserver : Install the systemd unit from a template] ********************
 ok: [i-047c179ac5700f0b9]
 ok: [i-055484b3d72e9a512]
 
-TASK [Create the application directory] ****************************************
-ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
-
-TASK [Render the landing page from a template] *********************************
-ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
-
-TASK [Install the systemd unit from a template] ********************************
-ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
-
-TASK [Enable the service and make sure it is running] **************************
+TASK [webserver : Enable the service and make sure it is running] **************
 ok: [i-047c179ac5700f0b9]
 ok: [i-055484b3d72e9a512]
 
