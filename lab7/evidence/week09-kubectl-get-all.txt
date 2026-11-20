@@ -1,0 +1,12 @@
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS   IMAGES           SELECTOR
+deployment.apps/acs730-lab4   2/2     2            2           3h9m   app          acs730-lab4:v1   app=acs730-lab4
+
+NAME                  TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+service/acs730-lab4   NodePort   10.96.97.197   <none>        8000:30080/TCP   52s   app=acs730-lab4
+
+NAME                    ENDPOINTS                         AGE
+endpoints/acs730-lab4   10.244.0.5:8000,10.244.0.6:8000   52s
+
+NAME                               READY   STATUS    RESTARTS   AGE    IP           NODE                   NOMINATED NODE   READINESS GATES
+pod/acs730-lab4-567567b696-js6cn   1/1     Running   0          3h9m   10.244.0.5   acs730-control-plane   <none>           <none>
+pod/acs730-lab4-567567b696-kzm54   1/1     Running   0          3h9m   10.244.0.6   acs730-control-plane   <none>           <none>
