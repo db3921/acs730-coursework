@@ -1,0 +1,15 @@
+deploy	Wait for the rollout, and fail the job if it does not finish	﻿2026-11-20T19:14:06.3141039Z ##[group]Run kubectl -n "$NS" rollout status "deployment/$DEPLOYMENT" --timeout=120s
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3142620Z ^[[36;1mkubectl -n "$NS" rollout status "deployment/$DEPLOYMENT" --timeout=120s^[[0m
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3146789Z shell: /usr/bin/bash -e {0}
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3147408Z env:
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3147893Z   CLUSTER: acs730
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3148328Z   NS: lab7
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3148769Z   DEPLOYMENT: acs730-lab4
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3149413Z   KUBECONFIG: /home/ec2-user/.kube/lab7-deployer.conf
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.3150207Z ##[endgroup]
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.5389163Z Waiting for deployment spec update to be observed...
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.5399950Z Waiting for deployment "acs730-lab4" rollout to finish: 0 out of 2 new replicas have been updated...
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.5853984Z Waiting for deployment "acs730-lab4" rollout to finish: 0 out of 2 new replicas have been updated...
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:14:06.6685688Z Waiting for deployment "acs730-lab4" rollout to finish: 1 out of 2 new replicas have been updated...
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:16:06.4828415Z error: timed out waiting for the condition
+deploy	Wait for the rollout, and fail the job if it does not finish	2026-11-20T19:16:06.4847771Z ##[error]Process completed with exit code 1.
