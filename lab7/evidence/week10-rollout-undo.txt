@@ -1,0 +1,17 @@
+=== history ===
+deployment.apps/acs730-lab4 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+3         <none>
+6         <none>
+7         <none>
+8         <none>
+
+=== after undo ===
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+acs730-lab4   2/2     2            2           4h54m
+NAME                           READY   STATUS    RESTARTS      AGE
+acs730-lab4-694d47c45b-m7wr5   1/1     Running   1 (26m ago)   37m
+acs730-lab4-694d47c45b-nrhz9   1/1     Running   1 (26m ago)   37m
+/healthz

@@ -23,6 +23,25 @@ kind has no cloud provider to provision a load balancer, so a `type: LoadBalance
 ### What scaling showed
 `week09-scaling.txt` shows 2/2 with two pods before and 4/4 with four pods after. The two original pods kept their age (3h13m) and two new ones (4s) were added; scaling up does not restart running pods. Deleting all four pods did not leave zero: the ReplicaSet replaced them within seconds because the declared count was still 4. Only `kubectl scale --replicas=2` brought it back to two.
 
+## Week 10
+
+### Why a GitHub-hosted runner cannot reach the cluster
+This is a reachability problem, not a permissions one. The kind API server listens on 127.0.0.1 inside a Docker container on the EC2 workstation: it has no public address, no DNS name, a security group in front of the instance, and no inbound route from GitHub's network. No token or secret fixes that, because nothing is being refused; there is nothing for a GitHub-hosted VM to connect to. The self-hosted runner works because it runs on the workstation itself and only polls GitHub outbound for jobs. `lab7-ci.yml` is fine on `ubuntu-latest` because it only reads files and never touches a cluster.
+
+### Self-hosted runner risk
+A self-hosted runner executes the workflow from the triggering commit on my workstation, as `ec2-user`, with the LabRole instance profile, docker group membership and my kubeconfig, so a workflow triggered by a fork pull request would run a stranger's code on my machine. Mitigations: `lab7-deploy.yml` triggers only on push to `main` (plus manual `workflow_dispatch`) and never on `pull_request`; fork pull request workflows require approval for all external contributors; the pipeline authenticates as the `lab7-deployer` ServiceAccount instead of cluster-admin; and the runner is removed at the end of the lab.
+
+**Residual risk:** anyone who can push to `main` (me, or anyone who obtains my GitHub credentials) still gets arbitrary code execution on the workstation as `ec2-user`, with the LabRole instance profile and docker group membership, which is effectively root on that machine; that user can also read the kind admin kubeconfig in `~/.kube/config`, so the scoped ServiceAccount limits the pipeline as written, not a malicious workflow. The mitigations reduce who can trigger a job, not what a job can do. The control that would actually reduce this is an ephemeral runner on a throwaway machine that is not also my workstation.
+
+### What the deployer ServiceAccount can and cannot do
+From `week10-auth-can-i.txt`: patch deployments in lab7 - yes; delete deployments - no; read secrets - no; create namespaces - no; delete nodes - no. It can write ConfigMaps because configuration is something a deploy legitimately changes; it cannot read Secrets because reading Secrets in a namespace means reading every credential in it. The pods still get `APP_TOKEN` because a `secretKeyRef` is resolved by the kubelet on the node under its own identity, not by whoever created or updated the Deployment.
+
+### Why rollout status is its own step
+`kubectl set image` returns success as soon as the API server accepts the edit; it says nothing about whether a pod started. `kubectl rollout status --timeout=120s` blocks until the new ReplicaSet is fully available and exits non-zero if it is not, and as its own `run:` step that exit code fails the job. Without it, the broken-probe deploy would have reported green while the new pods sat at 0/1; `week10-deploy-red.png` shows the red X on exactly that step, with every earlier step green, after a 120-second timeout.
+
+### Rollback
+The broken deploy (readiness probe pointed at `/not-a-real-path`) produced new pods that ran but never became ready, while the old pods kept serving, so `/healthz` stayed ok throughout. A plain `kubectl rollout undo` went back one revision to the broken deploy's intermediate revision, because the workflow's apply and set image steps create two revisions per deploy, and that revision still had the broken probe. `kubectl get rs` with the revision annotation showed revision 4 (`sha-3c6b79824874`, `/healthz`) as the last good deploy, and `rollout undo --to-revision=4`, run as the `lab7-deployer` ServiceAccount, restored it (`week10-rollout-undo.txt`: 2/2, probe `/healthz`). Undo changed only the cluster; `main` still contained the broken probe, so the next deploy would have reapplied it. The commit "fix the readiness probe path" (PR #37) fixed the repository, and the deploy after it was green.
+
 ## Experiments
 
 ### Experiment 2 - Ask kind for a load balancer
