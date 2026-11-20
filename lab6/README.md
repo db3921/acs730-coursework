@@ -43,3 +43,17 @@ Golden AMI, because production servers are launched in groups and by autoscaling
 ## SSM bucket and region
 
 The `aws_ssm` connection stages file transfers through an S3 bucket (`acs730-lab6-ssm-<account-id>`), and `ansible_aws_ssm_bucket_name` and `ansible_aws_ssm_region` in `group_vars/role_web.yml` must both point at the bucket's real region, `us-east-1`. If they disagree, the first task fails with `PermanentRedirect`.
+
+## Experiments
+
+### 1. Break idempotency on purpose
+
+**Prediction:** A task that runs `ansible.builtin.shell: mkdir -p /opt/acs730-web/logs` will report `changed=1` on every run, including the second, because a shell command cannot tell Ansible whether it changed anything. Adding `creates: /opt/acs730-web/logs` should bring it back to `changed=0`.
+
+**Result:** Both runs reported `changed=1` on both hosts, even though the directory already existed after the first run. With `creates:` added, the next run reported `changed=0`, because Ansible checked for the path and skipped the command. Ansible cannot work this out by itself because a shell command is opaque: it only sees an exit code, not what the command did, so it has to assume something changed unless a module or `creates:` tells it how to check the real state.
+
+### 2. state: latest versus state: present
+
+**Prediction:** With `state: latest` on the dnf task, the second run will most likely still report `changed=0`, but only because no newer `python3` or `rsync` happens to have been released since the instances were built; on a day when Amazon ships an update, the same run would report `changed`.
+
+**Result:** Both runs reported `changed=0` on both hosts, so today `latest` and `present` behaved the same. The answer does depend on the day: `latest` means "the newest version available right now", which changes whenever the repository does. In a pipeline that runs on every merge I want `present`, because "always up to date" means unplanned package upgrades in the middle of an unrelated deployment, a `changed` result that has nothing to do with the code being merged, and a server that no longer matches what was tested. Updates should be a deliberate change (a pinned version or a rebuilt golden AMI), not a side effect of whatever day the pipeline ran.

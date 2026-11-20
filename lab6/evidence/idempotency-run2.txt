@@ -3,33 +3,33 @@ PLAY [Configure the ACS730 Lab 6 web servers] **********************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
+ok: [i-0cf08a66487f3b36f]
 
 TASK [webserver : Install the packages the application needs] ******************
+ok: [i-0cf08a66487f3b36f]
 ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
 
 TASK [webserver : Create the unprivileged service account] *********************
+ok: [i-0cf08a66487f3b36f]
 ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
 
 TASK [webserver : Create the application directory] ****************************
 ok: [i-047c179ac5700f0b9]
-ok: [i-055484b3d72e9a512]
+ok: [i-0cf08a66487f3b36f]
 
 TASK [webserver : Render the landing page from a template] *********************
-ok: [i-055484b3d72e9a512]
 ok: [i-047c179ac5700f0b9]
+ok: [i-0cf08a66487f3b36f]
 
 TASK [webserver : Install the systemd unit from a template] ********************
-ok: [i-055484b3d72e9a512]
 ok: [i-047c179ac5700f0b9]
+ok: [i-0cf08a66487f3b36f]
 
 TASK [webserver : Enable the service and make sure it is running] **************
-ok: [i-055484b3d72e9a512]
+ok: [i-0cf08a66487f3b36f]
 ok: [i-047c179ac5700f0b9]
 
 PLAY RECAP *********************************************************************
 i-047c179ac5700f0b9        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-i-055484b3d72e9a512        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+i-0cf08a66487f3b36f        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 
