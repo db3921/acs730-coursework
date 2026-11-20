@@ -1,0 +1,10 @@
+namespace/lab7 unchanged
+serviceaccount/lab7-deployer created
+role.rbac.authorization.k8s.io/lab7-deployer created
+rolebinding.rbac.authorization.k8s.io/lab7-deployer created
+==> /home/ec2-user/.kube/lab7-deployer.conf authenticates as the lab7-deployer ServiceAccount in lab7
+can patch deployments in lab7:  yes
+can delete deployments in lab7: no
+can read secrets in lab7:       no
+can create namespaces:         no
+can delete nodes:              no

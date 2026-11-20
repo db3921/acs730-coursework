@@ -1,0 +1,33 @@
+name: lab7-ci
+ 
+# Validation only. This one DOES run on pull_request, and that is safe
+# precisely because it runs on a GitHub-hosted runner: a throwaway VM in
+# GitHub's account with no route to my workstation, my cluster or my AWS
+# instance profile. It never touches a cluster. The deploy workflow added
+# in Part 2 of 2 is the opposite on both counts, and must stay that way.
+on:
+  pull_request:
+    paths:
+      - 'lab7/**'
+      - '.github/workflows/lab7-ci.yml'
+  workflow_dispatch:
+ 
+permissions:
+  contents: read
+ 
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+ 
+      - name: Install kubeconform v0.8.0
+        run: |
+          curl -sSfL -o /tmp/kubeconform.tar.gz \
+            https://github.com/yannh/kubeconform/releases/download/v0.8.0/kubeconform-linux-amd64.tar.gz
+          tar -xzf /tmp/kubeconform.tar.gz -C /tmp kubeconform
+          sudo install -m 0755 /tmp/kubeconform /usr/local/bin/kubeconform
+          kubeconform -v
+ 
+      - name: Validate the Lab 7 manifests
+        run: kubeconform -strict -summary lab7/k8s/
