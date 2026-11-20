@@ -9,3 +9,4 @@ __pycache__/
 crash.log
 credentials
 tfplan
+lab6/packer/packer-manifest.json
