@@ -24,3 +24,13 @@ kind has no cloud provider to provision a load balancer, so a `type: LoadBalance
 `week09-scaling.txt` shows 2/2 with two pods before and 4/4 with four pods after. The two original pods kept their age (3h13m) and two new ones (4s) were added; scaling up does not restart running pods. Deleting all four pods did not leave zero: the ReplicaSet replaced them within seconds because the declared count was still 4. Only `kubectl scale --replicas=2` brought it back to two.
 
 ## Experiments
+
+### Experiment 2 - Ask kind for a load balancer
+**Prediction:** EXTERNAL-IP would stay `<pending>` indefinitely, with no error anywhere.
+**Result:** After patching the Service to `type: LoadBalancer`, `kubectl get svc -w` showed `EXTERNAL-IP <pending>` for the full two minutes; `kubectl describe svc` showed `Events: <none>` and `kubectl get events` had nothing for the Service. The NodePort 30080 stayed allocated, so the app was still reachable the old way.
+**Explanation:** A LoadBalancer Service only records a request; a cloud controller is what provisions the load balancer and writes its address back. kind has no cloud provider or load-balancer controller, so nothing ever answers and nothing reports an error. On EKS, the AWS cloud controller (or the AWS Load Balancer Controller) would create an ELB/NLB and fill EXTERNAL-IP with its DNS name. Reverted to NodePort.
+
+### Experiment 4 - Change a ConfigMap and watch nothing happen
+**Prediction:** Running pods would keep `info`; only new pods after a restart would see `debug`.
+**Result:** After setting `LOG_LEVEL` to `debug`, the ConfigMap read `debug` but `printenv LOG_LEVEL` in the running pod still printed `info`. After `kubectl rollout restart deployment/acs730-lab4`, the new pods printed `debug`.
+**Explanation:** `envFrom` copies ConfigMap values into the environment once, when the container starts; later edits are never pushed into running containers. So a deploy that only changes a ConfigMap applies successfully and reports success while the application keeps the old setting, until the pods are replaced (a rollout restart, or a change to the pod template). Set back to `info`.
