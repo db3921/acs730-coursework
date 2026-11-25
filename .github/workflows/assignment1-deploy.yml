@@ -1,0 +1,102 @@
+name: assignment1-deploy
+
+# PR: format and validate only (no credentials).
+# Merge to main: staging applies automatically, then prod waits for a reviewer.
+# Evidence and REPORT.md are excluded so committing them never re-applies.
+on:
+  pull_request:
+    paths:
+      - 'assignment1/**'
+      - '!assignment1/evidence/**'
+      - '!assignment1/REPORT.md'
+      - '.github/workflows/assignment1-deploy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assignment1/**'
+      - '!assignment1/evidence/**'
+      - '!assignment1/REPORT.md'
+      - '.github/workflows/assignment1-deploy.yml'
+
+permissions:
+  contents: read
+
+# Never two applies at once against the same state.
+concurrency:
+  group: assignment1-terraform
+  cancel-in-progress: false
+
+env:
+  TF_IN_AUTOMATION: "true"
+
+jobs:
+  validate:
+    name: fmt and validate
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: assignment1/terraform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.3
+          terraform_wrapper: false
+      - run: terraform fmt -check -recursive
+      - name: validate every environment
+        run: |
+          for d in dev staging prod; do
+            terraform -chdir="$d" init -backend=false -input=false
+            terraform -chdir="$d" validate
+          done
+
+  staging:
+    name: staging
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    # No protection rules: applies automatically. Reads the staging-scoped secrets.
+    environment: staging
+    defaults:
+      run:
+        working-directory: assignment1/terraform/staging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.3
+          terraform_wrapper: false
+      - run: terraform init -input=false
+      - run: terraform plan -input=false -out=tfplan
+      - run: terraform apply -input=false tfplan
+
+  prod:
+    name: prod
+    needs: staging
+    runs-on: ubuntu-latest
+    # Required reviewer + main-only branch policy: waits here for approval.
+    environment: prod
+    defaults:
+      run:
+        working-directory: assignment1/terraform/prod
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.10.3
+          terraform_wrapper: false
+      - run: terraform init -input=false
+      - run: terraform plan -input=false -out=tfplan
+      - run: terraform apply -input=false tfplan
