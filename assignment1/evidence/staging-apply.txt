@@ -1,0 +1,258 @@
+staging	Set up job	﻿2026-11-25T02:16:38.5224158Z Current runner version: '2.338.2'
+staging	Set up job	2026-11-25T02:16:38.5245455Z ##[group]Runner Image Provisioner
+staging	Set up job	2026-11-25T02:16:38.5246242Z Hosted Compute Agent
+staging	Set up job	2026-11-25T02:16:38.5246758Z Version: 20261111.635
+staging	Set up job	2026-11-25T02:16:38.5247422Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed
+staging	Set up job	2026-11-25T02:16:38.5248041Z Build Date: 2026-11-11T01:49:01Z
+staging	Set up job	2026-11-25T02:16:38.5248649Z Worker ID: {3b4ab70d-8c20-44d0-a6d2-620d0dfc94ef}
+staging	Set up job	2026-11-25T02:16:38.5249324Z Region: southcentralus
+staging	Set up job	2026-11-25T02:16:38.5249823Z Cloud: Azure
+staging	Set up job	2026-11-25T02:16:38.5250400Z ##[endgroup]
+staging	Set up job	2026-11-25T02:16:38.5251850Z ##[group]Operating System
+staging	Set up job	2026-11-25T02:16:38.5252468Z Ubuntu
+staging	Set up job	2026-11-25T02:16:38.5252938Z 26.04.1
+staging	Set up job	2026-11-25T02:16:38.5253468Z LTS
+staging	Set up job	2026-11-25T02:16:38.5253970Z ##[endgroup]
+staging	Set up job	2026-11-25T02:16:38.5254459Z ##[group]Runner Image
+staging	Set up job	2026-11-25T02:16:38.5255245Z Image: ubuntu-26.04
+staging	Set up job	2026-11-25T02:16:38.5255750Z Version: 20261116.202.1
+staging	Set up job	2026-11-25T02:16:38.5256676Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md
+staging	Set up job	2026-11-25T02:16:38.5258118Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202
+staging	Set up job	2026-11-25T02:16:38.5259047Z ##[endgroup]
+staging	Set up job	2026-11-25T02:16:38.5260065Z ##[group]GITHUB_TOKEN Permissions
+staging	Set up job	2026-11-25T02:16:38.5261605Z Contents: read
+staging	Set up job	2026-11-25T02:16:38.5262135Z Metadata: read
+staging	Set up job	2026-11-25T02:16:38.5262713Z ##[endgroup]
+staging	Set up job	2026-11-25T02:16:38.5264363Z Secret source: Actions
+staging	Set up job	2026-11-25T02:16:38.5265620Z Cache mode: write
+staging	Set up job	2026-11-25T02:16:38.5266427Z Prepare workflow directory
+staging	Set up job	2026-11-25T02:16:38.5626110Z Prepare all required actions
+staging	Set up job	2026-11-25T02:16:38.5664274Z Getting action download info
+staging	Set up job	2026-11-25T02:16:38.7982306Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+staging	Set up job	2026-11-25T02:16:38.8674750Z Download action repository 'aws-actions/configure-aws-credentials@v4' (SHA:7474bc4690e29a8392af63c5b98e7449536d5c3a)
+staging	Set up job	2026-11-25T02:16:39.2561825Z Download action repository 'hashicorp/setup-terraform@v3' (SHA:b9cd54a3c349d3f38e8881555d616ced269862dd)
+staging	Set up job	2026-11-25T02:16:39.7162451Z Complete job name: staging
+staging	Run actions/checkout@v4	﻿2026-11-25T02:16:39.7862388Z ##[group]Run actions/checkout@v4
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7863133Z with:
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7863561Z   repository: db3921/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7867241Z   token: ***
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7867657Z   ssh-strict: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7868063Z   ssh-user: git
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7868474Z   persist-credentials: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7868924Z   clean: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7869344Z   sparse-checkout-cone-mode: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7869866Z   fetch-depth: 1
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7870286Z   fetch-tags: false
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7870704Z   show-progress: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7871117Z   lfs: false
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7871498Z   submodules: false
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7871931Z   set-safe-directory: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7872402Z   allow-unsafe-pr-checkout: false
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7873021Z env:
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7873407Z   TF_IN_AUTOMATION: true
+staging	Run actions/checkout@v4	2026-11-25T02:16:39.7873865Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0031315Z Syncing repository: db3921/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0033791Z ##[group]Getting Git version info
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0035292Z Working directory is '/home/runner/work/acs730-coursework/acs730-coursework'
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0037137Z [command]/usr/bin/git version
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0037946Z git version 2.56.1
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0044377Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0057977Z Temporarily overriding HOME='/home/runner/work/_temp/862b0e51-8c3d-4402-8e3b-9d3682df72bb' before making global git config changes
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0060485Z Adding repository directory to the temporary git global config as a safe directory
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0062797Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/acs730-coursework/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0116912Z Deleting the contents of '/home/runner/work/acs730-coursework/acs730-coursework'
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0119881Z ##[group]Initializing the repository
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0123956Z [command]/usr/bin/git init /home/runner/work/acs730-coursework/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0219641Z hint: Using 'master' as the name for the initial branch. This default branch name
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0220973Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0221854Z hint: to use in all of your new repositories, which will suppress this warning,
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0222864Z hint: call:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0223522Z hint:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0224294Z hint: 	git config --global init.defaultBranch <name>
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0225142Z hint:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0225707Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0226540Z hint: 'development'. The just-created branch can be renamed via this command:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0227475Z hint:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0228103Z hint: 	git branch -m <name>
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0228806Z hint:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0229707Z hint: Disable this message with "git config set advice.defaultBranchName false"
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0231193Z Initialized empty Git repository in /home/runner/work/acs730-coursework/acs730-coursework/.git/
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0240996Z [command]/usr/bin/git remote add origin https://github.com/db3921/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0290136Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0291108Z ##[group]Disabling automatic garbage collection
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0292631Z [command]/usr/bin/git config --local gc.auto 0
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0321886Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0322566Z ##[group]Setting up auth
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0328166Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0358049Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.0997861Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1030190Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1262949Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1293251Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1524192Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1559179Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1566839Z ##[group]Fetching the repository
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.1568981Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +c88c499c9e32a6b831da6445ddc8574731892f30:refs/remotes/origin/main
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6543697Z From https://github.com/db3921/acs730-coursework
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6545226Z  * [new ref]         c88c499c9e32a6b831da6445ddc8574731892f30 -> origin/main
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6548371Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6549447Z ##[group]Determining the checkout info
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6550770Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6556085Z [command]/usr/bin/git sparse-checkout disable
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6602796Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6638868Z ##[group]Checking out the ref
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6640059Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6807239Z Switched to a new branch 'main'
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6811109Z branch 'main' set up to track 'origin/main'.
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6817006Z ##[endgroup]
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6854095Z [command]/usr/bin/git log -1 --format=%H
+staging	Run actions/checkout@v4	2026-11-25T02:16:40.6875381Z c88c499c9e32a6b831da6445ddc8574731892f30
+staging	Run aws-actions/configure-aws-credentials@v4	﻿2026-11-25T02:16:40.7270121Z ##[group]Run aws-actions/configure-aws-credentials@v4
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7271390Z with:
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7272293Z   aws-access-key-id: ***
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7273414Z   aws-secret-access-key: ***
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7285270Z   aws-session-token: ***
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7286092Z   aws-region: us-east-1
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7286908Z   audience: sts.amazonaws.com
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7287792Z   output-env-credentials: true
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7288619Z env:
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7289294Z   TF_IN_AUTOMATION: true
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.7290077Z ##[endgroup]
+staging	Run aws-actions/configure-aws-credentials@v4	2026-11-25T02:16:40.9684744Z Proceeding with IAM user credentials
+staging	Run hashicorp/setup-terraform@v3	﻿2026-11-25T02:16:40.9853958Z ##[group]Run hashicorp/setup-terraform@v3
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9855064Z with:
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9855752Z   terraform_version: 1.10.3
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9856583Z   terraform_wrapper: false
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9857515Z   cli_config_credentials_hostname: app.terraform.io
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9858531Z env:
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9859188Z   TF_IN_AUTOMATION: true
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9860001Z   AWS_DEFAULT_REGION: us-east-1
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9860875Z   AWS_REGION: us-east-1
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9861803Z   AWS_ACCESS_KEY_ID: ***
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9862866Z   AWS_SECRET_ACCESS_KEY: ***
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9873833Z   AWS_SESSION_TOKEN: ***
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:40.9874616Z ##[endgroup]
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:41.1013493Z (node:2194) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:41.1016940Z (Use `node --trace-deprecation ...` to show where the warning was created)
+staging	Run hashicorp/setup-terraform@v3	2026-11-25T02:16:41.4885446Z [command]/usr/bin/unzip -o -q /home/runner/work/_temp/c9aaaeb8-68f5-47c7-aa30-23cea3952368
+staging	Run terraform init -input=false	﻿2026-11-25T02:16:42.0112541Z ##[group]Run terraform init -input=false
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0112966Z ^[[36;1mterraform init -input=false^[[0m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0148600Z shell: /usr/bin/bash -e {0}
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0148884Z env:
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0149111Z   TF_IN_AUTOMATION: true
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0149381Z   AWS_DEFAULT_REGION: us-east-1
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0149638Z   AWS_REGION: us-east-1
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0150085Z   AWS_ACCESS_KEY_ID: ***
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0150416Z   AWS_SECRET_ACCESS_KEY: ***
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0153221Z   AWS_SESSION_TOKEN: ***
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0153458Z ##[endgroup]
+staging	Run terraform init -input=false	2026-11-25T02:16:42.0462718Z ^[[0m^[[1mInitializing the backend...^[[0m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.4250496Z ^[[0m^[[32m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.4250954Z Successfully configured the backend "s3"! Terraform will automatically
+staging	Run terraform init -input=false	2026-11-25T02:16:42.4251475Z use this backend unless the backend configuration changes.^[[0m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.6716688Z ^[[0m^[[1mInitializing modules...^[[0m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.6733158Z - webstack in ../modules/webstack
+staging	Run terraform init -input=false	2026-11-25T02:16:42.6742763Z ^[[0m^[[1mInitializing provider plugins...^[[0m
+staging	Run terraform init -input=false	2026-11-25T02:16:42.6743417Z - Reusing previous version of hashicorp/aws from the dependency lock file
+staging	Run terraform init -input=false	2026-11-25T02:16:42.9557299Z - Installing hashicorp/aws v5.100.0...
+staging	Run terraform init -input=false	2026-11-25T02:16:48.9736469Z - Installed hashicorp/aws v5.100.0 (signed by HashiCorp)
+staging	Run terraform init -input=false	2026-11-25T02:16:48.9737209Z 
+staging	Run terraform init -input=false	2026-11-25T02:16:48.9737940Z ^[[0m^[[1m^[[32mTerraform has been successfully initialized!^[[0m^[[32m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	﻿2026-11-25T02:16:48.9792082Z ##[group]Run terraform plan -input=false -out=tfplan
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9792475Z ^[[36;1mterraform plan -input=false -out=tfplan^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9822407Z shell: /usr/bin/bash -e {0}
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9822682Z env:
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9822866Z   TF_IN_AUTOMATION: true
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9823077Z   AWS_DEFAULT_REGION: us-east-1
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9823316Z   AWS_REGION: us-east-1
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9823787Z   AWS_ACCESS_KEY_ID: ***
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9824108Z   AWS_SECRET_ACCESS_KEY: ***
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9828770Z   AWS_SESSION_TOKEN: ***
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:48.9829113Z ##[endgroup]
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6947665Z ^[[0m^[[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Reading...^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6948803Z ^[[0m^[[1mmodule.webstack.data.aws_ami.al2023[0]: Reading...^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6950317Z ^[[0m^[[1mmodule.webstack.data.aws_availability_zones.available: Reading...^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6951183Z ^[[0m^[[1mmodule.webstack.data.aws_region.current: Reading...^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6954803Z ^[[0m^[[1mmodule.webstack.aws_vpc.main: Refreshing state... [id=vpc-02921cdd1880c8d51]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.6963321Z ^[[0m^[[1mmodule.webstack.data.aws_region.current: Read complete after 0s [id=us-east-1]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:51.8930645Z ^[[0m^[[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Read complete after 0s [id=/acs730/staging/db_password]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.0824853Z ^[[0m^[[1mmodule.webstack.data.aws_availability_zones.available: Read complete after 0s [id=us-east-1]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.3515736Z ^[[0m^[[1mmodule.webstack.data.aws_ami.al2023[0]: Read complete after 0s [id=ami-062caee4b7b602eb0]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.7859846Z ^[[0m^[[1mmodule.webstack.aws_internet_gateway.main: Refreshing state... [id=igw-0214e016e1a639389]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.7861193Z ^[[0m^[[1mmodule.webstack.aws_subnet.public["a"]: Refreshing state... [id=subnet-0beb48e73edcecc67]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.7879269Z ^[[0m^[[1mmodule.webstack.aws_security_group.web: Refreshing state... [id=sg-0e58564f001debe18]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.7880386Z ^[[0m^[[1mmodule.webstack.aws_subnet.public["b"]: Refreshing state... [id=subnet-0ac13979ee3e839b9]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:52.8874598Z ^[[0m^[[1mmodule.webstack.aws_route_table.public: Refreshing state... [id=rtb-075859eed4ce7db4e]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:53.0654817Z ^[[0m^[[1mmodule.webstack.aws_route_table_association.public["b"]: Refreshing state... [id=rtbassoc-00da70440a45b76fb]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:53.0656186Z ^[[0m^[[1mmodule.webstack.aws_route_table_association.public["a"]: Refreshing state... [id=rtbassoc-0e2c231f4dde7f3ab]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:53.1652399Z ^[[0m^[[1mmodule.webstack.aws_instance.web: Refreshing state... [id=i-09a8dddfc683ef91e]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:54.6721883Z ^[[0m^[[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Refreshing state... [id=acs730-a1-staging-cpu-high]^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0917430Z 
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0918187Z Terraform used the selected providers to generate the following execution
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0918788Z plan. Resource actions are indicated with the following symbols:
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0919511Z   ^[[33m~^[[0m update in-place^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0919713Z 
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0919859Z Terraform will perform the following actions:
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0920119Z 
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0920408Z ^[[1m  # module.webstack.aws_instance.web^[[0m will be updated in-place
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0920955Z ^[[0m  ^[[33m~^[[0m^[[0m resource "aws_instance" "web" {
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0921352Z         id                                   = "i-09a8dddfc683ef91e"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0921835Z       ^[[33m~^[[0m^[[0m tags                                 = {
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0922295Z             "AppSecretParameter" = "/acs730/staging/db_password"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0922702Z             "AppSecretVersion"   = "1"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0923032Z             "Environment"        = "staging"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0923396Z             "Managed"            = "terraform"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0923770Z             "Name"               = "acs730-a1-staging-web"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0924813Z           ^[[33m~^[[0m^[[0m "Release"            = "v1" ^[[33m->^[[0m^[[0m "v2"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0925372Z         }
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0925636Z       ^[[33m~^[[0m^[[0m tags_all                             = {
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0925973Z           ^[[33m~^[[0m^[[0m "Release"            = "v1" ^[[33m->^[[0m^[[0m "v2"
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0926333Z             ^[[90m# (8 unchanged elements hidden)^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0926574Z         }
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0926810Z         ^[[90m# (39 unchanged attributes hidden)^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0926989Z 
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0927124Z         ^[[90m# (8 unchanged blocks hidden)^[[0m^[[0m
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0927354Z     }
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0927450Z 
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.0927587Z ^[[1mPlan:^[[0m 0 to add, 1 to change, 0 to destroy.
+staging	Run terraform plan -input=false -out=tfplan	2026-11-25T02:16:55.2194323Z ^[[0m
+staging	Run terraform apply -input=false tfplan	﻿2026-11-25T02:16:55.2233576Z ##[group]Run terraform apply -input=false tfplan
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2233904Z ^[[36;1mterraform apply -input=false tfplan^[[0m
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2263213Z shell: /usr/bin/bash -e {0}
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2263432Z env:
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2263620Z   TF_IN_AUTOMATION: true
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2263828Z   AWS_DEFAULT_REGION: us-east-1
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2264036Z   AWS_REGION: us-east-1
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2264396Z   AWS_ACCESS_KEY_ID: ***
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2264669Z   AWS_SECRET_ACCESS_KEY: ***
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2267657Z   AWS_SESSION_TOKEN: ***
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:55.2267863Z ##[endgroup]
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:57.7501248Z ^[[0m^[[1mmodule.webstack.aws_instance.web: Modifying... [id=i-09a8dddfc683ef91e]^[[0m^[[0m
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.2867630Z ^[[0m^[[1mmodule.webstack.aws_instance.web: Modifications complete after 1s [id=i-09a8dddfc683ef91e]^[[0m
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5212388Z ^[[0m^[[1m^[[32m
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5212914Z Apply complete! Resources: 0 added, 1 changed, 0 destroyed.
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5213232Z ^[[0m^[[0m^[[1m^[[32m
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5213516Z Outputs:
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5213614Z 
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5213753Z ^[[0malarm_name = "acs730-a1-staging-cpu-high"
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5214047Z app_secret_parameter = "/acs730/staging/db_password"
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5214300Z app_secret_version = 1
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5214502Z instance_id = "i-09a8dddfc683ef91e"
+staging	Run terraform apply -input=false tfplan	2026-11-25T02:16:59.5214761Z web_url = "http://52.91.19.76/"
+staging	Post Run aws-actions/configure-aws-credentials@v4	﻿2026-11-25T02:16:59.5429849Z Post job cleanup.
+staging	Post Run actions/checkout@v4	﻿2026-11-25T02:16:59.6429880Z Post job cleanup.
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7137424Z [command]/usr/bin/git version
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7173247Z git version 2.56.1
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7205871Z Temporarily overriding HOME='/home/runner/work/_temp/6e9a54e8-d50b-404a-adce-670f32549c33' before making global git config changes
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7206616Z Adding repository directory to the temporary git global config as a safe directory
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7210279Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/acs730-coursework/acs730-coursework
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7244584Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7274895Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7529783Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7553446Z http.https://github.com/.extraheader
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7562549Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7593430Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7847125Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+staging	Post Run actions/checkout@v4	2026-11-25T02:16:59.7877638Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+staging	Complete job	﻿2026-11-25T02:16:59.8237156Z Cleaning up orphan processes
+staging	Complete job	2026-11-25T02:16:59.8554554Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, aws-actions/configure-aws-credentials@v4, hashicorp/setup-terraform@v3. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

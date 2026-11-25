@@ -1,0 +1,27 @@
+$ aws ssm get-parameter (metadata only - the value is never printed)
+------------------------------------------------------
+|                    GetParameter                    |
++---------------+------------------------------------+
+|  LastModified |  2026-11-25T01:45:39.924000+00:00  |
+|  Name         |  /acs730/staging/db_password       |
+|  Type         |  SecureString                      |
+|  Version      |  1                                 |
++---------------+------------------------------------+
+------------------------------------------------------
+|                    GetParameter                    |
++---------------+------------------------------------+
+|  LastModified |  2026-11-25T01:45:40.729000+00:00  |
+|  Name         |  /acs730/prod/db_password          |
+|  Type         |  SecureString                      |
+|  Version      |  1                                 |
++---------------+------------------------------------+
+
+$ grep -rn aws_ssm_parameter assignment1/terraform --include=*.tf   (one data source, no resource)
+assignment1/terraform/modules/webstack/compute.tf:18:data "aws_ssm_parameter" "app_secret" {
+assignment1/terraform/modules/webstack/compute.tf:68:    AppSecretVersion   = tostring(data.aws_ssm_parameter.app_secret.version)
+assignment1/terraform/modules/webstack/outputs.tf:33:  value       = data.aws_ssm_parameter.app_secret.name
+assignment1/terraform/modules/webstack/outputs.tf:38:  value       = data.aws_ssm_parameter.app_secret.version
+
+$ curl prod web server (the instance read the secret itself at boot)
+<h1>ACS730 Assignment 1 - acs730-a1-prod</h1><p>Environment: prod</p><p>App secret: loaded from Parameter Store (/acs730/prod/db_password)</p>
+

@@ -1,0 +1,872 @@
+===== terraform destroy: prod
+[0m[1mmodule.webstack.data.aws_availability_zones.available: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Reading...[0m[0m
+[0m[1mmodule.webstack.aws_vpc.main: Refreshing state... [id=vpc-0c2a75f055b807c58][0m
+[0m[1mmodule.webstack.data.aws_region.current: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_ami.al2023[0]: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_region.current: Read complete after 0s [id=us-east-1][0m
+[0m[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Read complete after 0s [id=/acs730/prod/db_password][0m
+[0m[1mmodule.webstack.data.aws_availability_zones.available: Read complete after 0s [id=us-east-1][0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Refreshing state... [id=igw-0c20f960ae9b2d7a5][0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Refreshing state... [id=subnet-0d1c24152176e1acd][0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Refreshing state... [id=subnet-090cd78e8bc424e4d][0m
+[0m[1mmodule.webstack.aws_security_group.web: Refreshing state... [id=sg-003cf0043448f06d1][0m
+[0m[1mmodule.webstack.aws_route_table.public: Refreshing state... [id=rtb-0cc512a27ce682945][0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Refreshing state... [id=rtbassoc-0e9705b7f9dd46548][0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Refreshing state... [id=rtbassoc-0a38d2d48882b4aea][0m
+[0m[1mmodule.webstack.data.aws_ami.al2023[0]: Read complete after 0s [id=ami-062caee4b7b602eb0][0m
+[0m[1mmodule.webstack.aws_instance.web: Refreshing state... [id=i-0d538fc6c3f7e728f][0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Refreshing state... [id=acs730-a1-prod-cpu-high][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.webstack.aws_cloudwatch_metric_alarm.cpu_high[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+      [31m-[0m[0m actions_enabled                       = true [90m-> null[0m[0m
+      [31m-[0m[0m alarm_actions                         = [] [90m-> null[0m[0m
+      [31m-[0m[0m alarm_description                     = "Average CPU on acs730-a1-prod-web above 70% for 10 minutes" [90m-> null[0m[0m
+      [31m-[0m[0m alarm_name                            = "acs730-a1-prod-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m arn                                   = "arn:aws:cloudwatch:us-east-1:423739922781:alarm:acs730-a1-prod-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m comparison_operator                   = "GreaterThanThreshold" [90m-> null[0m[0m
+      [31m-[0m[0m datapoints_to_alarm                   = 0 [90m-> null[0m[0m
+      [31m-[0m[0m dimensions                            = {
+          [31m-[0m[0m "InstanceId" = "i-0d538fc6c3f7e728f"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m evaluation_periods                    = 2 [90m-> null[0m[0m
+      [31m-[0m[0m id                                    = "acs730-a1-prod-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m insufficient_data_actions             = [] [90m-> null[0m[0m
+      [31m-[0m[0m metric_name                           = "CPUUtilization" [90m-> null[0m[0m
+      [31m-[0m[0m namespace                             = "AWS/EC2" [90m-> null[0m[0m
+      [31m-[0m[0m ok_actions                            = [] [90m-> null[0m[0m
+      [31m-[0m[0m period                                = 300 [90m-> null[0m[0m
+      [31m-[0m[0m statistic                             = "Average" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                  = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-cpu-high"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                              = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-cpu-high"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m threshold                             = 70 [90m-> null[0m[0m
+      [31m-[0m[0m treat_missing_data                    = "missing" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_instance.web[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_instance" "web" {
+      [31m-[0m[0m ami                                  = "ami-062caee4b7b602eb0" [90m-> null[0m[0m
+      [31m-[0m[0m arn                                  = "arn:aws:ec2:us-east-1:423739922781:instance/i-0d538fc6c3f7e728f" [90m-> null[0m[0m
+      [31m-[0m[0m associate_public_ip_address          = true [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                    = "us-east-1a" [90m-> null[0m[0m
+      [31m-[0m[0m cpu_core_count                       = 1 [90m-> null[0m[0m
+      [31m-[0m[0m cpu_threads_per_core                 = 2 [90m-> null[0m[0m
+      [31m-[0m[0m disable_api_stop                     = false [90m-> null[0m[0m
+      [31m-[0m[0m disable_api_termination              = false [90m-> null[0m[0m
+      [31m-[0m[0m ebs_optimized                        = false [90m-> null[0m[0m
+      [31m-[0m[0m get_password_data                    = false [90m-> null[0m[0m
+      [31m-[0m[0m hibernation                          = false [90m-> null[0m[0m
+      [31m-[0m[0m iam_instance_profile                 = "LabInstanceProfile" [90m-> null[0m[0m
+      [31m-[0m[0m id                                   = "i-0d538fc6c3f7e728f" [90m-> null[0m[0m
+      [31m-[0m[0m instance_initiated_shutdown_behavior = "stop" [90m-> null[0m[0m
+      [31m-[0m[0m instance_state                       = "running" [90m-> null[0m[0m
+      [31m-[0m[0m instance_type                        = "t3.micro" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_address_count                   = 0 [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_addresses                       = [] [90m-> null[0m[0m
+      [31m-[0m[0m monitoring                           = false [90m-> null[0m[0m
+      [31m-[0m[0m placement_partition_number           = 0 [90m-> null[0m[0m
+      [31m-[0m[0m primary_network_interface_id         = "eni-0fce5b14b44d01da8" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns                          = "ip-10-30-1-133.ec2.internal" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip                           = "10.30.1.133" [90m-> null[0m[0m
+      [31m-[0m[0m public_dns                           = "ec2-18-204-202-223.compute-1.amazonaws.com" [90m-> null[0m[0m
+      [31m-[0m[0m public_ip                            = "18.204.202.223" [90m-> null[0m[0m
+      [31m-[0m[0m secondary_private_ips                = [] [90m-> null[0m[0m
+      [31m-[0m[0m security_groups                      = [] [90m-> null[0m[0m
+      [31m-[0m[0m source_dest_check                    = true [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id                            = "subnet-090cd78e8bc424e4d" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                 = {
+          [31m-[0m[0m "AppSecretParameter" = "/acs730/prod/db_password"
+          [31m-[0m[0m "AppSecretVersion"   = "1"
+          [31m-[0m[0m "Environment"        = "prod"
+          [31m-[0m[0m "Managed"            = "terraform"
+          [31m-[0m[0m "Name"               = "acs730-a1-prod-web"
+          [31m-[0m[0m "Release"            = "v2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                             = {
+          [31m-[0m[0m "AppSecretParameter" = "/acs730/prod/db_password"
+          [31m-[0m[0m "AppSecretVersion"   = "1"
+          [31m-[0m[0m "Assignment"         = "assignment1"
+          [31m-[0m[0m "Course"             = "ACS730"
+          [31m-[0m[0m "Environment"        = "prod"
+          [31m-[0m[0m "Managed"            = "terraform"
+          [31m-[0m[0m "Name"               = "acs730-a1-prod-web"
+          [31m-[0m[0m "Owner"              = "dbielski"
+          [31m-[0m[0m "Release"            = "v2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tenancy                              = "default" [90m-> null[0m[0m
+      [31m-[0m[0m user_data                            = "81fec9a3bf1cad1d3956027a79c8c115800cacfd" [90m-> null[0m[0m
+      [31m-[0m[0m user_data_replace_on_change          = false [90m-> null[0m[0m
+      [31m-[0m[0m vpc_security_group_ids               = [
+          [31m-[0m[0m "sg-003cf0043448f06d1",
+        ] [90m-> null[0m[0m
+        [90m# (7 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m capacity_reservation_specification {
+          [31m-[0m[0m capacity_reservation_preference = "open" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m cpu_options {
+          [31m-[0m[0m core_count       = 1 [90m-> null[0m[0m
+          [31m-[0m[0m threads_per_core = 2 [90m-> null[0m[0m
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+
+      [31m-[0m[0m credit_specification {
+          [31m-[0m[0m cpu_credits = "unlimited" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m enclave_options {
+          [31m-[0m[0m enabled = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m maintenance_options {
+          [31m-[0m[0m auto_recovery = "default" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m metadata_options {
+          [31m-[0m[0m http_endpoint               = "enabled" [90m-> null[0m[0m
+          [31m-[0m[0m http_protocol_ipv6          = "disabled" [90m-> null[0m[0m
+          [31m-[0m[0m http_put_response_hop_limit = 2 [90m-> null[0m[0m
+          [31m-[0m[0m http_tokens                 = "required" [90m-> null[0m[0m
+          [31m-[0m[0m instance_metadata_tags      = "disabled" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m private_dns_name_options {
+          [31m-[0m[0m enable_resource_name_dns_a_record    = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_resource_name_dns_aaaa_record = false [90m-> null[0m[0m
+          [31m-[0m[0m hostname_type                        = "ip-name" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m root_block_device {
+          [31m-[0m[0m delete_on_termination = true [90m-> null[0m[0m
+          [31m-[0m[0m device_name           = "/dev/xvda" [90m-> null[0m[0m
+          [31m-[0m[0m encrypted             = true [90m-> null[0m[0m
+          [31m-[0m[0m iops                  = 3000 [90m-> null[0m[0m
+          [31m-[0m[0m kms_key_id            = "arn:aws:kms:us-east-1:423739922781:key/6a327729-9f20-40fa-a0fd-575ce8386fa1" [90m-> null[0m[0m
+          [31m-[0m[0m tags                  = {} [90m-> null[0m[0m
+          [31m-[0m[0m tags_all              = {
+              [31m-[0m[0m "Assignment" = "assignment1"
+              [31m-[0m[0m "Course"     = "ACS730"
+              [31m-[0m[0m "Owner"      = "dbielski"
+            } [90m-> null[0m[0m
+          [31m-[0m[0m throughput            = 125 [90m-> null[0m[0m
+          [31m-[0m[0m volume_id             = "vol-07e6db5b77ff8d6c9" [90m-> null[0m[0m
+          [31m-[0m[0m volume_size           = 8 [90m-> null[0m[0m
+          [31m-[0m[0m volume_type           = "gp3" [90m-> null[0m[0m
+        }
+    }
+
+[1m  # module.webstack.aws_internet_gateway.main[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_internet_gateway" "main" {
+      [31m-[0m[0m arn      = "arn:aws:ec2:us-east-1:423739922781:internet-gateway/igw-0c20f960ae9b2d7a5" [90m-> null[0m[0m
+      [31m-[0m[0m id       = "igw-0c20f960ae9b2d7a5" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m tags     = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-igw"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-igw"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id   = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table.public[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table" "public" {
+      [31m-[0m[0m arn              = "arn:aws:ec2:us-east-1:423739922781:route-table/rtb-0cc512a27ce682945" [90m-> null[0m[0m
+      [31m-[0m[0m id               = "rtb-0cc512a27ce682945" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id         = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m propagating_vgws = [] [90m-> null[0m[0m
+      [31m-[0m[0m route            = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_block                 = "0.0.0.0/0"
+              [31m-[0m[0m gateway_id                 = "igw-0c20f960ae9b2d7a5"
+                [90m# (11 unchanged attributes hidden)[0m[0m
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m tags             = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-rt"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all         = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-rt"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id           = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table_association.public["a"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table_association" "public" {
+      [31m-[0m[0m id             = "rtbassoc-0a38d2d48882b4aea" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id = "rtb-0cc512a27ce682945" [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id      = "subnet-090cd78e8bc424e4d" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table_association.public["b"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table_association" "public" {
+      [31m-[0m[0m id             = "rtbassoc-0e9705b7f9dd46548" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id = "rtb-0cc512a27ce682945" [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id      = "subnet-0d1c24152176e1acd" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_security_group.web[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_security_group" "web" {
+      [31m-[0m[0m arn                    = "arn:aws:ec2:us-east-1:423739922781:security-group/sg-003cf0043448f06d1" [90m-> null[0m[0m
+      [31m-[0m[0m description            = "Web ingress for ACS730 Assignment 1 (prod)" [90m-> null[0m[0m
+      [31m-[0m[0m egress                 = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = [
+                  [31m-[0m[0m "0.0.0.0/0",
+                ]
+              [31m-[0m[0m description      = "All outbound"
+              [31m-[0m[0m from_port        = 0
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "-1"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 0
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m id                     = "sg-003cf0043448f06d1" [90m-> null[0m[0m
+      [31m-[0m[0m ingress                = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = [
+                  [31m-[0m[0m "0.0.0.0/0",
+                ]
+              [31m-[0m[0m description      = "HTTP from anywhere"
+              [31m-[0m[0m from_port        = 80
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "tcp"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 80
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m name                   = "acs730-a1-prod-web" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id               = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m revoke_rules_on_delete = false [90m-> null[0m[0m
+      [31m-[0m[0m tags                   = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-web-sg"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all               = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-web-sg"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                 = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_subnet.public["a"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_subnet" "public" {
+      [31m-[0m[0m arn                                            = "arn:aws:ec2:us-east-1:423739922781:subnet/subnet-090cd78e8bc424e4d" [90m-> null[0m[0m
+      [31m-[0m[0m assign_ipv6_address_on_creation                = false [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                              = "us-east-1a" [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone_id                           = "use1-az2" [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                                     = "10.30.1.0/24" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns64                                   = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_lni_at_device_index                     = 0 [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_a_record_on_launch    = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                             = "subnet-090cd78e8bc424e4d" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_native                                    = false [90m-> null[0m[0m
+      [31m-[0m[0m map_customer_owned_ip_on_launch                = false [90m-> null[0m[0m
+      [31m-[0m[0m map_public_ip_on_launch                        = true [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                                       = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns_hostname_type_on_launch            = "ip-name" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                           = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-a"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                                       = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-a"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                                         = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_subnet.public["b"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_subnet" "public" {
+      [31m-[0m[0m arn                                            = "arn:aws:ec2:us-east-1:423739922781:subnet/subnet-0d1c24152176e1acd" [90m-> null[0m[0m
+      [31m-[0m[0m assign_ipv6_address_on_creation                = false [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                              = "us-east-1b" [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone_id                           = "use1-az4" [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                                     = "10.30.2.0/24" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns64                                   = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_lni_at_device_index                     = 0 [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_a_record_on_launch    = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                             = "subnet-0d1c24152176e1acd" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_native                                    = false [90m-> null[0m[0m
+      [31m-[0m[0m map_customer_owned_ip_on_launch                = false [90m-> null[0m[0m
+      [31m-[0m[0m map_public_ip_on_launch                        = true [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                                       = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns_hostname_type_on_launch            = "ip-name" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                           = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-b"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                                       = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-public-b"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                                         = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_vpc.main[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_vpc" "main" {
+      [31m-[0m[0m arn                                  = "arn:aws:ec2:us-east-1:423739922781:vpc/vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+      [31m-[0m[0m assign_generated_ipv6_cidr_block     = false [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                           = "10.30.0.0/16" [90m-> null[0m[0m
+      [31m-[0m[0m default_network_acl_id               = "acl-03bfc73d475965c9a" [90m-> null[0m[0m
+      [31m-[0m[0m default_route_table_id               = "rtb-07642a33c0877f8b5" [90m-> null[0m[0m
+      [31m-[0m[0m default_security_group_id            = "sg-0a6476aa0793fcb93" [90m-> null[0m[0m
+      [31m-[0m[0m dhcp_options_id                      = "dopt-0e4beb418fdcdad84" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns_hostnames                 = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns_support                   = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_network_address_usage_metrics = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                   = "vpc-0c2a75f055b807c58" [90m-> null[0m[0m
+      [31m-[0m[0m instance_tenancy                     = "default" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_netmask_length                  = 0 [90m-> null[0m[0m
+      [31m-[0m[0m main_route_table_id                  = "rtb-07642a33c0877f8b5" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                             = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                 = {
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-vpc"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                             = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "prod"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-prod-vpc"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 0 to change, 10 to destroy.
+[0m
+Changes to Outputs:
+  [31m-[0m[0m alarm_name           = "acs730-a1-prod-cpu-high" [90m-> null[0m[0m
+  [31m-[0m[0m app_secret_parameter = "/acs730/prod/db_password" [90m-> null[0m[0m
+  [31m-[0m[0m app_secret_version   = 1 [90m-> null[0m[0m
+  [31m-[0m[0m instance_id          = "i-0d538fc6c3f7e728f" [90m-> null[0m[0m
+  [31m-[0m[0m web_url              = "http://18.204.202.223/" [90m-> null[0m[0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Destroying... [id=acs730-a1-prod-cpu-high][0m[0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_instance.web: Destroying... [id=i-0d538fc6c3f7e728f][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Still destroying... [id=i-0d538fc6c3f7e728f, 10s elapsed][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Still destroying... [id=i-0d538fc6c3f7e728f, 20s elapsed][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Destruction complete after 30s[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Destroying... [id=rtbassoc-0e9705b7f9dd46548][0m[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Destroying... [id=rtbassoc-0a38d2d48882b4aea][0m[0m
+[0m[1mmodule.webstack.aws_security_group.web: Destroying... [id=sg-003cf0043448f06d1][0m[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Destroying... [id=subnet-090cd78e8bc424e4d][0m[0m
+[0m[1mmodule.webstack.aws_route_table.public: Destroying... [id=rtb-0cc512a27ce682945][0m[0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Destroying... [id=subnet-0d1c24152176e1acd][0m[0m
+[0m[1mmodule.webstack.aws_security_group.web: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_route_table.public: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Destroying... [id=igw-0c20f960ae9b2d7a5][0m[0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_vpc.main: Destroying... [id=vpc-0c2a75f055b807c58][0m[0m
+[0m[1mmodule.webstack.aws_vpc.main: Destruction complete after 1s[0m
+[0m[1m[32m
+Destroy complete! Resources: 10 destroyed.
+[0m===== terraform destroy: staging
+[0m[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_ami.al2023[0]: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_availability_zones.available: Reading...[0m[0m
+[0m[1mmodule.webstack.data.aws_region.current: Reading...[0m[0m
+[0m[1mmodule.webstack.aws_vpc.main: Refreshing state... [id=vpc-02921cdd1880c8d51][0m
+[0m[1mmodule.webstack.data.aws_region.current: Read complete after 0s [id=us-east-1][0m
+[0m[1mmodule.webstack.data.aws_availability_zones.available: Read complete after 0s [id=us-east-1][0m
+[0m[1mmodule.webstack.data.aws_ssm_parameter.app_secret: Read complete after 0s [id=/acs730/staging/db_password][0m
+[0m[1mmodule.webstack.data.aws_ami.al2023[0]: Read complete after 0s [id=ami-062caee4b7b602eb0][0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Refreshing state... [id=igw-0214e016e1a639389][0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Refreshing state... [id=subnet-0ac13979ee3e839b9][0m
+[0m[1mmodule.webstack.aws_security_group.web: Refreshing state... [id=sg-0e58564f001debe18][0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Refreshing state... [id=subnet-0beb48e73edcecc67][0m
+[0m[1mmodule.webstack.aws_route_table.public: Refreshing state... [id=rtb-075859eed4ce7db4e][0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Refreshing state... [id=rtbassoc-00da70440a45b76fb][0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Refreshing state... [id=rtbassoc-0e2c231f4dde7f3ab][0m
+[0m[1mmodule.webstack.aws_instance.web: Refreshing state... [id=i-09a8dddfc683ef91e][0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Refreshing state... [id=acs730-a1-staging-cpu-high][0m
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [31m-[0m destroy[0m
+
+Terraform will perform the following actions:
+
+[1m  # module.webstack.aws_cloudwatch_metric_alarm.cpu_high[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+      [31m-[0m[0m actions_enabled                       = true [90m-> null[0m[0m
+      [31m-[0m[0m alarm_actions                         = [] [90m-> null[0m[0m
+      [31m-[0m[0m alarm_description                     = "Average CPU on acs730-a1-staging-web above 80% for 10 minutes" [90m-> null[0m[0m
+      [31m-[0m[0m alarm_name                            = "acs730-a1-staging-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m arn                                   = "arn:aws:cloudwatch:us-east-1:423739922781:alarm:acs730-a1-staging-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m comparison_operator                   = "GreaterThanThreshold" [90m-> null[0m[0m
+      [31m-[0m[0m datapoints_to_alarm                   = 0 [90m-> null[0m[0m
+      [31m-[0m[0m dimensions                            = {
+          [31m-[0m[0m "InstanceId" = "i-09a8dddfc683ef91e"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m evaluation_periods                    = 2 [90m-> null[0m[0m
+      [31m-[0m[0m id                                    = "acs730-a1-staging-cpu-high" [90m-> null[0m[0m
+      [31m-[0m[0m insufficient_data_actions             = [] [90m-> null[0m[0m
+      [31m-[0m[0m metric_name                           = "CPUUtilization" [90m-> null[0m[0m
+      [31m-[0m[0m namespace                             = "AWS/EC2" [90m-> null[0m[0m
+      [31m-[0m[0m ok_actions                            = [] [90m-> null[0m[0m
+      [31m-[0m[0m period                                = 300 [90m-> null[0m[0m
+      [31m-[0m[0m statistic                             = "Average" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                  = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-cpu-high"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                              = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-cpu-high"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m threshold                             = 80 [90m-> null[0m[0m
+      [31m-[0m[0m treat_missing_data                    = "missing" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_instance.web[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_instance" "web" {
+      [31m-[0m[0m ami                                  = "ami-062caee4b7b602eb0" [90m-> null[0m[0m
+      [31m-[0m[0m arn                                  = "arn:aws:ec2:us-east-1:423739922781:instance/i-09a8dddfc683ef91e" [90m-> null[0m[0m
+      [31m-[0m[0m associate_public_ip_address          = true [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                    = "us-east-1a" [90m-> null[0m[0m
+      [31m-[0m[0m cpu_core_count                       = 1 [90m-> null[0m[0m
+      [31m-[0m[0m cpu_threads_per_core                 = 2 [90m-> null[0m[0m
+      [31m-[0m[0m disable_api_stop                     = false [90m-> null[0m[0m
+      [31m-[0m[0m disable_api_termination              = false [90m-> null[0m[0m
+      [31m-[0m[0m ebs_optimized                        = false [90m-> null[0m[0m
+      [31m-[0m[0m get_password_data                    = false [90m-> null[0m[0m
+      [31m-[0m[0m hibernation                          = false [90m-> null[0m[0m
+      [31m-[0m[0m iam_instance_profile                 = "LabInstanceProfile" [90m-> null[0m[0m
+      [31m-[0m[0m id                                   = "i-09a8dddfc683ef91e" [90m-> null[0m[0m
+      [31m-[0m[0m instance_initiated_shutdown_behavior = "stop" [90m-> null[0m[0m
+      [31m-[0m[0m instance_state                       = "running" [90m-> null[0m[0m
+      [31m-[0m[0m instance_type                        = "t3.micro" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_address_count                   = 0 [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_addresses                       = [] [90m-> null[0m[0m
+      [31m-[0m[0m monitoring                           = false [90m-> null[0m[0m
+      [31m-[0m[0m placement_partition_number           = 0 [90m-> null[0m[0m
+      [31m-[0m[0m primary_network_interface_id         = "eni-0ec41d1946e8bcf91" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns                          = "ip-10-20-1-157.ec2.internal" [90m-> null[0m[0m
+      [31m-[0m[0m private_ip                           = "10.20.1.157" [90m-> null[0m[0m
+      [31m-[0m[0m public_dns                           = "ec2-52-91-19-76.compute-1.amazonaws.com" [90m-> null[0m[0m
+      [31m-[0m[0m public_ip                            = "52.91.19.76" [90m-> null[0m[0m
+      [31m-[0m[0m secondary_private_ips                = [] [90m-> null[0m[0m
+      [31m-[0m[0m security_groups                      = [] [90m-> null[0m[0m
+      [31m-[0m[0m source_dest_check                    = true [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id                            = "subnet-0beb48e73edcecc67" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                 = {
+          [31m-[0m[0m "AppSecretParameter" = "/acs730/staging/db_password"
+          [31m-[0m[0m "AppSecretVersion"   = "1"
+          [31m-[0m[0m "Environment"        = "staging"
+          [31m-[0m[0m "Managed"            = "terraform"
+          [31m-[0m[0m "Name"               = "acs730-a1-staging-web"
+          [31m-[0m[0m "Release"            = "v2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                             = {
+          [31m-[0m[0m "AppSecretParameter" = "/acs730/staging/db_password"
+          [31m-[0m[0m "AppSecretVersion"   = "1"
+          [31m-[0m[0m "Assignment"         = "assignment1"
+          [31m-[0m[0m "Course"             = "ACS730"
+          [31m-[0m[0m "Environment"        = "staging"
+          [31m-[0m[0m "Managed"            = "terraform"
+          [31m-[0m[0m "Name"               = "acs730-a1-staging-web"
+          [31m-[0m[0m "Owner"              = "dbielski"
+          [31m-[0m[0m "Release"            = "v2"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tenancy                              = "default" [90m-> null[0m[0m
+      [31m-[0m[0m user_data                            = "3fd8daefc8b3929a8551b55abbb4b8c9445f5c3a" [90m-> null[0m[0m
+      [31m-[0m[0m user_data_replace_on_change          = false [90m-> null[0m[0m
+      [31m-[0m[0m vpc_security_group_ids               = [
+          [31m-[0m[0m "sg-0e58564f001debe18",
+        ] [90m-> null[0m[0m
+        [90m# (7 unchanged attributes hidden)[0m[0m
+
+      [31m-[0m[0m capacity_reservation_specification {
+          [31m-[0m[0m capacity_reservation_preference = "open" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m cpu_options {
+          [31m-[0m[0m core_count       = 1 [90m-> null[0m[0m
+          [31m-[0m[0m threads_per_core = 2 [90m-> null[0m[0m
+            [90m# (1 unchanged attribute hidden)[0m[0m
+        }
+
+      [31m-[0m[0m credit_specification {
+          [31m-[0m[0m cpu_credits = "unlimited" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m enclave_options {
+          [31m-[0m[0m enabled = false [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m maintenance_options {
+          [31m-[0m[0m auto_recovery = "default" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m metadata_options {
+          [31m-[0m[0m http_endpoint               = "enabled" [90m-> null[0m[0m
+          [31m-[0m[0m http_protocol_ipv6          = "disabled" [90m-> null[0m[0m
+          [31m-[0m[0m http_put_response_hop_limit = 2 [90m-> null[0m[0m
+          [31m-[0m[0m http_tokens                 = "required" [90m-> null[0m[0m
+          [31m-[0m[0m instance_metadata_tags      = "disabled" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m private_dns_name_options {
+          [31m-[0m[0m enable_resource_name_dns_a_record    = false [90m-> null[0m[0m
+          [31m-[0m[0m enable_resource_name_dns_aaaa_record = false [90m-> null[0m[0m
+          [31m-[0m[0m hostname_type                        = "ip-name" [90m-> null[0m[0m
+        }
+
+      [31m-[0m[0m root_block_device {
+          [31m-[0m[0m delete_on_termination = true [90m-> null[0m[0m
+          [31m-[0m[0m device_name           = "/dev/xvda" [90m-> null[0m[0m
+          [31m-[0m[0m encrypted             = true [90m-> null[0m[0m
+          [31m-[0m[0m iops                  = 3000 [90m-> null[0m[0m
+          [31m-[0m[0m kms_key_id            = "arn:aws:kms:us-east-1:423739922781:key/6a327729-9f20-40fa-a0fd-575ce8386fa1" [90m-> null[0m[0m
+          [31m-[0m[0m tags                  = {} [90m-> null[0m[0m
+          [31m-[0m[0m tags_all              = {
+              [31m-[0m[0m "Assignment" = "assignment1"
+              [31m-[0m[0m "Course"     = "ACS730"
+              [31m-[0m[0m "Owner"      = "dbielski"
+            } [90m-> null[0m[0m
+          [31m-[0m[0m throughput            = 125 [90m-> null[0m[0m
+          [31m-[0m[0m volume_id             = "vol-080a98630a1f7345b" [90m-> null[0m[0m
+          [31m-[0m[0m volume_size           = 8 [90m-> null[0m[0m
+          [31m-[0m[0m volume_type           = "gp3" [90m-> null[0m[0m
+        }
+    }
+
+[1m  # module.webstack.aws_internet_gateway.main[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_internet_gateway" "main" {
+      [31m-[0m[0m arn      = "arn:aws:ec2:us-east-1:423739922781:internet-gateway/igw-0214e016e1a639389" [90m-> null[0m[0m
+      [31m-[0m[0m id       = "igw-0214e016e1a639389" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m tags     = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-igw"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-igw"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id   = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table.public[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table" "public" {
+      [31m-[0m[0m arn              = "arn:aws:ec2:us-east-1:423739922781:route-table/rtb-075859eed4ce7db4e" [90m-> null[0m[0m
+      [31m-[0m[0m id               = "rtb-075859eed4ce7db4e" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id         = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m propagating_vgws = [] [90m-> null[0m[0m
+      [31m-[0m[0m route            = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_block                 = "0.0.0.0/0"
+              [31m-[0m[0m gateway_id                 = "igw-0214e016e1a639389"
+                [90m# (11 unchanged attributes hidden)[0m[0m
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m tags             = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-rt"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all         = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-rt"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id           = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table_association.public["a"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table_association" "public" {
+      [31m-[0m[0m id             = "rtbassoc-0e2c231f4dde7f3ab" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id = "rtb-075859eed4ce7db4e" [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id      = "subnet-0beb48e73edcecc67" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_route_table_association.public["b"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_route_table_association" "public" {
+      [31m-[0m[0m id             = "rtbassoc-00da70440a45b76fb" [90m-> null[0m[0m
+      [31m-[0m[0m route_table_id = "rtb-075859eed4ce7db4e" [90m-> null[0m[0m
+      [31m-[0m[0m subnet_id      = "subnet-0ac13979ee3e839b9" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_security_group.web[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_security_group" "web" {
+      [31m-[0m[0m arn                    = "arn:aws:ec2:us-east-1:423739922781:security-group/sg-0e58564f001debe18" [90m-> null[0m[0m
+      [31m-[0m[0m description            = "Web ingress for ACS730 Assignment 1 (staging)" [90m-> null[0m[0m
+      [31m-[0m[0m egress                 = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = [
+                  [31m-[0m[0m "0.0.0.0/0",
+                ]
+              [31m-[0m[0m description      = "All outbound"
+              [31m-[0m[0m from_port        = 0
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "-1"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 0
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m id                     = "sg-0e58564f001debe18" [90m-> null[0m[0m
+      [31m-[0m[0m ingress                = [
+          [31m-[0m[0m {
+              [31m-[0m[0m cidr_blocks      = [
+                  [31m-[0m[0m "0.0.0.0/0",
+                ]
+              [31m-[0m[0m description      = "HTTP from anywhere"
+              [31m-[0m[0m from_port        = 80
+              [31m-[0m[0m ipv6_cidr_blocks = []
+              [31m-[0m[0m prefix_list_ids  = []
+              [31m-[0m[0m protocol         = "tcp"
+              [31m-[0m[0m security_groups  = []
+              [31m-[0m[0m self             = false
+              [31m-[0m[0m to_port          = 80
+            },
+        ] [90m-> null[0m[0m
+      [31m-[0m[0m name                   = "acs730-a1-staging-web" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id               = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m revoke_rules_on_delete = false [90m-> null[0m[0m
+      [31m-[0m[0m tags                   = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-web-sg"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all               = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-web-sg"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                 = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+        [90m# (1 unchanged attribute hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_subnet.public["a"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_subnet" "public" {
+      [31m-[0m[0m arn                                            = "arn:aws:ec2:us-east-1:423739922781:subnet/subnet-0beb48e73edcecc67" [90m-> null[0m[0m
+      [31m-[0m[0m assign_ipv6_address_on_creation                = false [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                              = "us-east-1a" [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone_id                           = "use1-az2" [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                                     = "10.20.1.0/24" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns64                                   = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_lni_at_device_index                     = 0 [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_a_record_on_launch    = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                             = "subnet-0beb48e73edcecc67" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_native                                    = false [90m-> null[0m[0m
+      [31m-[0m[0m map_customer_owned_ip_on_launch                = false [90m-> null[0m[0m
+      [31m-[0m[0m map_public_ip_on_launch                        = true [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                                       = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns_hostname_type_on_launch            = "ip-name" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                           = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-a"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                                       = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-a"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                                         = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_subnet.public["b"][0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_subnet" "public" {
+      [31m-[0m[0m arn                                            = "arn:aws:ec2:us-east-1:423739922781:subnet/subnet-0ac13979ee3e839b9" [90m-> null[0m[0m
+      [31m-[0m[0m assign_ipv6_address_on_creation                = false [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone                              = "us-east-1b" [90m-> null[0m[0m
+      [31m-[0m[0m availability_zone_id                           = "use1-az4" [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                                     = "10.20.2.0/24" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns64                                   = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_lni_at_device_index                     = 0 [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_a_record_on_launch    = false [90m-> null[0m[0m
+      [31m-[0m[0m enable_resource_name_dns_aaaa_record_on_launch = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                             = "subnet-0ac13979ee3e839b9" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_native                                    = false [90m-> null[0m[0m
+      [31m-[0m[0m map_customer_owned_ip_on_launch                = false [90m-> null[0m[0m
+      [31m-[0m[0m map_public_ip_on_launch                        = true [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                                       = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m private_dns_hostname_type_on_launch            = "ip-name" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                           = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-b"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                                       = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-public-b"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m vpc_id                                         = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1m  # module.webstack.aws_vpc.main[0m will be [1m[31mdestroyed[0m
+[0m  [31m-[0m[0m resource "aws_vpc" "main" {
+      [31m-[0m[0m arn                                  = "arn:aws:ec2:us-east-1:423739922781:vpc/vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+      [31m-[0m[0m assign_generated_ipv6_cidr_block     = false [90m-> null[0m[0m
+      [31m-[0m[0m cidr_block                           = "10.20.0.0/16" [90m-> null[0m[0m
+      [31m-[0m[0m default_network_acl_id               = "acl-0435634d843ca2cbb" [90m-> null[0m[0m
+      [31m-[0m[0m default_route_table_id               = "rtb-0bcc845fd9f2ca682" [90m-> null[0m[0m
+      [31m-[0m[0m default_security_group_id            = "sg-0575eb41b3ca95bbd" [90m-> null[0m[0m
+      [31m-[0m[0m dhcp_options_id                      = "dopt-0e4beb418fdcdad84" [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns_hostnames                 = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_dns_support                   = true [90m-> null[0m[0m
+      [31m-[0m[0m enable_network_address_usage_metrics = false [90m-> null[0m[0m
+      [31m-[0m[0m id                                   = "vpc-02921cdd1880c8d51" [90m-> null[0m[0m
+      [31m-[0m[0m instance_tenancy                     = "default" [90m-> null[0m[0m
+      [31m-[0m[0m ipv6_netmask_length                  = 0 [90m-> null[0m[0m
+      [31m-[0m[0m main_route_table_id                  = "rtb-0bcc845fd9f2ca682" [90m-> null[0m[0m
+      [31m-[0m[0m owner_id                             = "423739922781" [90m-> null[0m[0m
+      [31m-[0m[0m tags                                 = {
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-vpc"
+        } [90m-> null[0m[0m
+      [31m-[0m[0m tags_all                             = {
+          [31m-[0m[0m "Assignment"  = "assignment1"
+          [31m-[0m[0m "Course"      = "ACS730"
+          [31m-[0m[0m "Environment" = "staging"
+          [31m-[0m[0m "Managed"     = "terraform"
+          [31m-[0m[0m "Name"        = "acs730-a1-staging-vpc"
+          [31m-[0m[0m "Owner"       = "dbielski"
+        } [90m-> null[0m[0m
+        [90m# (4 unchanged attributes hidden)[0m[0m
+    }
+
+[1mPlan:[0m 0 to add, 0 to change, 10 to destroy.
+[0m
+Changes to Outputs:
+  [31m-[0m[0m alarm_name           = "acs730-a1-staging-cpu-high" [90m-> null[0m[0m
+  [31m-[0m[0m app_secret_parameter = "/acs730/staging/db_password" [90m-> null[0m[0m
+  [31m-[0m[0m app_secret_version   = 1 [90m-> null[0m[0m
+  [31m-[0m[0m instance_id          = "i-09a8dddfc683ef91e" [90m-> null[0m[0m
+  [31m-[0m[0m web_url              = "http://52.91.19.76/" [90m-> null[0m[0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Destroying... [id=acs730-a1-staging-cpu-high][0m[0m
+[0m[1mmodule.webstack.aws_cloudwatch_metric_alarm.cpu_high: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_instance.web: Destroying... [id=i-09a8dddfc683ef91e][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Still destroying... [id=i-09a8dddfc683ef91e, 10s elapsed][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Still destroying... [id=i-09a8dddfc683ef91e, 20s elapsed][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Still destroying... [id=i-09a8dddfc683ef91e, 30s elapsed][0m[0m
+[0m[1mmodule.webstack.aws_instance.web: Destruction complete after 30s[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Destroying... [id=rtbassoc-00da70440a45b76fb][0m[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Destroying... [id=rtbassoc-0e2c231f4dde7f3ab][0m[0m
+[0m[1mmodule.webstack.aws_security_group.web: Destroying... [id=sg-0e58564f001debe18][0m[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["a"]: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_route_table_association.public["b"]: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Destroying... [id=subnet-0beb48e73edcecc67][0m[0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Destroying... [id=subnet-0ac13979ee3e839b9][0m[0m
+[0m[1mmodule.webstack.aws_route_table.public: Destroying... [id=rtb-075859eed4ce7db4e][0m[0m
+[0m[1mmodule.webstack.aws_security_group.web: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_route_table.public: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Destroying... [id=igw-0214e016e1a639389][0m[0m
+[0m[1mmodule.webstack.aws_subnet.public["a"]: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_subnet.public["b"]: Destruction complete after 1s[0m
+[0m[1mmodule.webstack.aws_internet_gateway.main: Destruction complete after 0s[0m
+[0m[1mmodule.webstack.aws_vpc.main: Destroying... [id=vpc-02921cdd1880c8d51][0m[0m
+[0m[1mmodule.webstack.aws_vpc.main: Destruction complete after 1s[0m
+[0m[1m[32m
+Destroy complete! Resources: 10 destroyed.
+[0m===== terraform destroy: dev
+
+[0m[1m[32mNo changes.[0m[1m No objects need to be destroyed.[0m
+
+[0mEither you have not created any objects yet or the existing objects were
+already deleted outside of Terraform.
+[0m[1m[32m
+Destroy complete! Resources: 0 destroyed.
+[0m
