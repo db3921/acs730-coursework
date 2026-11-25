@@ -3,7 +3,7 @@ module "webstack" {
   source = "../modules/webstack"
 
   environment = "prod"
-  release     = "v1"
+  release     = "v2"
   vpc_cidr    = "10.30.0.0/16"
 
   public_subnets = {
